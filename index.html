@@ -3,303 +3,373 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VIRTUOSA IND | Moda femenina</title>
+
+    <title>VIRTUOSA IND | Boutique femenina</title>
+
     <meta
       name="description"
-      content="VIRTUOSA IND — Moda femenina, prendas seleccionadas y estilo para todos los días."
+      content="VIRTUOSA IND - Boutique femenina. Descubrí prendas modernas, elegantes y versátiles."
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <div class="barra-superior">
-      <p>✨ Envíos y compras por WhatsApp</p>
-    </div>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="encabezado">
-      <div class="contenedor encabezado-contenido">
-        <a href="#inicio" class="logo">VIRTUOSA <span>IND</span></a>
-
-        <nav class="navegacion">
-          <a href="#inicio">Inicio</a>
-          <a href="#productos">Colección</a>
-          <a href="#nosotros">Nosotras</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-
-        <button
-          class="boton-carrito"
-          id="botonCarrito"
-          aria-label="Abrir carrito"
-        >
-          🛍️
-          <span id="cantidadCarrito" class="cantidad-carrito">0</span>
-        </button>
+      <div class="logo">
+        <span>VIRTUOSA</span>
+        <small>IND</small>
       </div>
+
+      <nav class="navegacion">
+        <a href="#inicio">Inicio</a>
+        <a href="#categorias">Categorías</a>
+        <a href="#productos">Productos</a>
+        <a href="#nosotras">Nosotras</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button
+        class="boton-carrito"
+        id="botonCarrito"
+        aria-label="Abrir carrito"
+        type="button"
+      >
+        🛍️
+        <span id="cantidadCarrito">0</span>
+      </button>
     </header>
+
+    <!-- =====================================================
+         PORTADA
+    ====================================================== -->
 
     <main>
       <section class="hero" id="inicio">
         <div class="hero-contenido">
-          <p class="hero-etiqueta">NUEVA COLECCIÓN</p>
+          <p class="hero-etiqueta">VIRTUOSA IND</p>
+
           <h1>Vestite de vos.</h1>
-          <p class="hero-texto">
-            Prendas seleccionadas para mujeres que buscan sentirse cómodas,
-            seguras y auténticas.
+
+          <p>
+            Prendas femeninas, modernas y versátiles para acompañarte en cada
+            momento.
           </p>
-          <a href="#productos" class="boton-principal">Ver colección</a>
+
+          <a href="#productos" class="boton-principal"> Ver colección </a>
         </div>
       </section>
 
-      <section class="categorias">
-        <div class="contenedor">
-          <div class="titulo-seccion">
-            <span>DESCUBRÍ</span>
-            <h2>Encontrá tu estilo</h2>
-          </div>
+      <!-- =================================================
+             CATEGORÍAS
+        ================================================== -->
 
-          <div class="categorias-grid">
-            <a href="#productos" class="categoria-card">
-              <div class="categoria-imagen categoria-remeras"></div>
-              <h3>Remeras</h3>
-            </a>
+      <section class="categorias" id="categorias">
+        <div class="seccion-encabezado">
+          <p class="seccion-etiqueta">DESCUBRÍ</p>
 
-            <a href="#productos" class="categoria-card">
-              <div class="categoria-imagen categoria-pantalones"></div>
-              <h3>Pantalones</h3>
-            </a>
+          <h2>Categorías</h2>
 
-            <a href="#productos" class="categoria-card">
-              <div class="categoria-imagen categoria-vestidos"></div>
-              <h3>Vestidos</h3>
-            </a>
+          <p>Encontrá tu próximo look.</p>
+        </div>
 
-            <a href="#productos" class="categoria-card">
-              <div class="categoria-imagen categoria-conjuntos"></div>
-              <h3>Conjuntos</h3>
-            </a>
-          </div>
+        <div class="categorias-grid">
+          <a href="#productos" class="categoria">
+            <span>01</span>
+            <h3>Remeras</h3>
+            <p>Esenciales para todos los días.</p>
+          </a>
+
+          <a href="#productos" class="categoria">
+            <span>02</span>
+            <h3>Pantalones</h3>
+            <p>Comodidad y estilo.</p>
+          </a>
+
+          <a href="#productos" class="categoria">
+            <span>03</span>
+            <h3>Vestidos</h3>
+            <p>Elegancia para cada ocasión.</p>
+          </a>
+
+          <a href="#productos" class="categoria">
+            <span>04</span>
+            <h3>Outfits</h3>
+            <p>Looks pensados para vos.</p>
+          </a>
         </div>
       </section>
+
+      <!-- =================================================
+             PRODUCTOS
+        ================================================== -->
 
       <section class="productos" id="productos">
-        <div class="contenedor">
-          <div class="titulo-seccion">
-            <span>VIRTUOSA IND</span>
-            <h2>Nuestra colección</h2>
-            <p>Elegí tus prendas favoritas.</p>
-          </div>
+        <div class="seccion-encabezado">
+          <p class="seccion-etiqueta">NUEVA COLECCIÓN</p>
 
-          <div class="filtros">
-            <button class="filtro activo" data-categoria="todos">Todos</button>
-            <button class="filtro" data-categoria="remeras">Remeras</button>
-            <button class="filtro" data-categoria="pantalones">
-              Pantalones
-            </button>
-            <button class="filtro" data-categoria="vestidos">Vestidos</button>
-            <button class="filtro" data-categoria="conjuntos">Conjuntos</button>
-          </div>
+          <h2>Nuestros productos</h2>
 
-          <div class="productos-grid" id="listaProductos">
-            <article class="producto" data-categoria="remeras">
-              <div class="producto-imagen">
-                <span class="etiqueta-producto">NUEVO</span>
-                <img
-                  src="imagenes/remera-rosa.jpg"
-                  alt="Remera rosa VIRTUOSA IND"
-                />
-                <button class="boton-agregar" data-id="1">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">REMERAS</p>
-                <h3>Remera Essential</h3>
-                <p class="producto-precio">$28.000</p>
-              </div>
-            </article>
+          <p>Elegí tus prendas favoritas.</p>
+        </div>
 
-            <article class="producto" data-categoria="pantalones">
-              <div class="producto-imagen">
-                <img
-                  src="imagenes/pantalon-negro.jpg"
-                  alt="Pantalón negro VIRTUOSA IND"
-                />
-                <button class="boton-agregar" data-id="2">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">PANTALONES</p>
-                <h3>Pantalón Urban</h3>
-                <p class="producto-precio">$48.000</p>
-              </div>
-            </article>
+        <div class="productos-grid" id="productosGrid">
+          <!-- PRODUCTO 1 -->
 
-            <article class="producto" data-categoria="vestidos">
-              <div class="producto-imagen">
-                <span class="etiqueta-producto">DESTACADO</span>
-                <img
-                  src="imagenes/vestido-negro.jpg"
-                  alt="Vestido negro VIRTUOSA IND"
-                />
-                <button class="boton-agregar" data-id="3">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">VESTIDOS</p>
-                <h3>Vestido Aura</h3>
-                <p class="producto-precio">$55.000</p>
-              </div>
-            </article>
+          <article class="producto">
+            <div class="producto-imagen">
+              <img
+                src="imagenes/Remera Essential.jpg"
+                alt="Remera Essential "
+              />
 
-            <article class="producto" data-categoria="conjuntos">
-              <div class="producto-imagen">
-                <img
-                  src="imagenes/conjunto-beige.jpg"
-                  alt="Conjunto beige VIRTUOSA IND"
-                />
-                <button class="boton-agregar" data-id="4">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">CONJUNTOS</p>
-                <h3>Conjunto Soft</h3>
-                <p class="producto-precio">$62.000</p>
-              </div>
-            </article>
+              <button class="boton-agregar" type="button" data-id="1">
+                Agregar al carrito
+              </button>
+            </div>
 
-            <article class="producto" data-categoria="remeras">
-              <div class="producto-imagen">
-                <img
-                  src="imagenes/remera-blanca.jpg"
-                  alt="Remera blanca VIRTUOSA IND"
-                />
-                <button class="boton-agregar" data-id="5">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">REMERAS</p>
-                <h3>Remera Basic</h3>
-                <p class="producto-precio">$25.000</p>
-              </div>
-            </article>
+            <div class="producto-info">
+              <span class="producto-categoria"> REMERAS </span>
 
-            <article class="producto" data-categoria="pantalones">
-              <div class="producto-imagen">
-                <img src="imagenes/jean.jpg" alt="Jean azul VIRTUOSA IND" />
-                <button class="boton-agregar" data-id="6">
-                  Agregar al carrito
-                </button>
-              </div>
-              <div class="producto-info">
-                <p class="producto-categoria">PANTALONES</p>
-                <h3>Jean Classic</h3>
-                <p class="producto-precio">$52.000</p>
-              </div>
-            </article>
-          </div>
+              <h3>Remera Essential</h3>
+
+              <p class="producto-descripcion">
+                Básica, cómoda y fácil de combinar.
+              </p>
+
+              <p class="producto-precio">$28.000</p>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 2 -->
+
+          <article class="producto">
+            <div class="producto-imagen">
+              <img
+                src="imagenes/pantalon-negro.jpg"
+                alt="Pantalón Urban negro"
+              />
+
+              <button class="boton-agregar" type="button" data-id="2">
+                Agregar al carrito
+              </button>
+            </div>
+
+            <div class="producto-info">
+              <span class="producto-categoria"> PANTALONES </span>
+
+              <h3>Pantalón Urban</h3>
+
+              <p class="producto-descripcion">
+                Diseño moderno para looks urbanos.
+              </p>
+
+              <p class="producto-precio">$48.000</p>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 3 -->
+
+          <article class="producto">
+            <div class="producto-imagen">
+              <img src="imagenes/vestido-negro.jpg" alt="Vestido Aura negro" />
+
+              <button class="boton-agregar" type="button" data-id="3">
+                Agregar al carrito
+              </button>
+            </div>
+
+            <div class="producto-info">
+              <span class="producto-categoria"> VESTIDOS </span>
+
+              <h3>Vestido Aura</h3>
+
+              <p class="producto-descripcion">
+                Elegante y versátil para distintas ocasiones.
+              </p>
+
+              <p class="producto-precio">$55.000</p>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 4 -->
+
+          <article class="producto">
+            <div class="producto-imagen">
+              <img
+                src="imagenes/conjunto-beige.jpg"
+                alt="Conjunto Soft beige"
+              />
+
+              <button class="boton-agregar" type="button" data-id="4">
+                Agregar al carrito
+              </button>
+            </div>
+
+            <div class="producto-info">
+              <span class="producto-categoria"> OUTFITS </span>
+
+              <h3>Conjunto Soft</h3>
+
+              <p class="producto-descripcion">
+                Un conjunto cómodo y sofisticado.
+              </p>
+
+              <p class="producto-precio">$62.000</p>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 5 -->
+
+          <article class="producto">
+            <div class="producto-imagen">
+              <img src="imagenes/remera-blanca.jpg" alt="Remera Basic blanca" />
+
+              <button class="boton-agregar" type="button" data-id="5">
+                Agregar al carrito
+              </button>
+            </div>
+
+            <div class="producto-info">
+              <span class="producto-categoria"> REMERAS </span>
+
+              <h3>Remera Basic</h3>
+
+              <p class="producto-descripcion">
+                Un básico imprescindible para tu guardarropa.
+              </p>
+
+              <p class="producto-precio">$25.000</p>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 6 -->
+
+          <article class="producto">
+            <div class="producto-imagen">
+              <img src="imagenes/jean.jpg" alt="Jean Classic azul" />
+
+              <button class="boton-agregar" type="button" data-id="6">
+                Agregar al carrito
+              </button>
+            </div>
+
+            <div class="producto-info">
+              <span class="producto-categoria"> PANTALONES </span>
+
+              <h3>Jean Classic</h3>
+
+              <p class="producto-descripcion">
+                Un clásico que combina con todo.
+              </p>
+
+              <p class="producto-precio">$52.000</p>
+            </div>
+          </article>
         </div>
       </section>
 
-      <section class="beneficios">
-        <div class="contenedor beneficios-grid">
-          <div class="beneficio">
-            <div class="beneficio-icono">✦</div>
-            <h3>Prendas seleccionadas</h3>
-            <p>Elegimos cada prenda pensando en tu estilo.</p>
-          </div>
+      <!-- =================================================
+             NOSOTRAS
+        ================================================== -->
 
-          <div class="beneficio">
-            <div class="beneficio-icono">♡</div>
-            <h3>Atención personalizada</h3>
-            <p>Te ayudamos a encontrar lo que buscás.</p>
-          </div>
+      <section class="nosotras" id="nosotras">
+        <div class="nosotras-contenido">
+          <div class="nosotras-texto">
+            <p class="seccion-etiqueta">SOBRE VIRTUOSA</p>
 
-          <div class="beneficio">
-            <div class="beneficio-icono">✧</div>
-            <h3>Comprá fácil</h3>
-            <p>Hacé tu pedido directamente por WhatsApp.</p>
-          </div>
-        </div>
-      </section>
+            <h2>Una forma de vestir, una forma de expresarte.</h2>
 
-      <section class="nosotros" id="nosotros">
-        <div class="contenedor nosotros-grid">
-          <div class="nosotros-imagen">
-            <div class="nosotros-decoracion">VIRTUOSA</div>
-          </div>
-
-          <div class="nosotros-contenido">
-            <span>SOBRE NOSOTRAS</span>
-            <h2>Más que ropa, <strong>una forma de expresarte.</strong></h2>
             <p>
-              En VIRTUOSA IND creemos que la ropa es una forma de expresar quién
-              sos.
+              En VIRTUOSA IND creemos que la ropa es una forma de expresión.
+              Creamos una selección de prendas pensadas para mujeres que buscan
+              sentirse cómodas, seguras y auténticas.
             </p>
+
             <p>
-              Seleccionamos prendas versátiles, femeninas y actuales para
-              acompañarte en cada momento.
+              Elegimos cada detalle para crear una propuesta femenina, moderna y
+              versátil.
             </p>
-            <a href="#contacto" class="boton-secundario">Conocé más</a>
           </div>
         </div>
       </section>
+
+      <!-- =================================================
+             INSTAGRAM
+        ================================================== -->
 
       <section class="instagram">
-        <div class="contenedor">
-          <div class="titulo-seccion">
-            <span>SEGUINOS</span>
-            <h2>VIRTUOSA IND en Instagram</h2>
-            <p>Descubrí nuestras novedades y nuevos ingresos.</p>
-          </div>
+        <div class="seccion-encabezado">
+          <p class="seccion-etiqueta">SEGUINOS</p>
+
+          <h2>VIRTUOSA IND</h2>
+
+          <p>Inspiración, novedades y nuevos ingresos.</p>
 
           <a
-            href="#"
-            class="boton-instagram"
+            href="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
+            class="boton-secundario"
+          >
+            Ver Instagram
+          </a>
+        </div>
+      </section>
+
+      <!-- =================================================
+             CONTACTO
+        ================================================== -->
+
+      <section class="contacto" id="contacto">
+        <div class="seccion-encabezado">
+          <p class="seccion-etiqueta">CONTACTO</p>
+
+          <h2>¿Tenés alguna consulta?</h2>
+
+          <p>Escribinos y te ayudamos con tu compra.</p>
+        </div>
+
+        <div class="contacto-botones">
+          <a
+            href="https://wa.me/5493410000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boton-principal"
+          >
+            WhatsApp
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boton-secundario"
           >
             Instagram
           </a>
         </div>
       </section>
-
-      <section class="contacto" id="contacto">
-        <div class="contenedor contacto-contenido">
-          <span>¿TENÉS ALGUNA CONSULTA?</span>
-          <h2>Estamos para ayudarte.</h2>
-          <p>
-            Consultá por talles, colores, disponibilidad y formas de entrega.
-          </p>
-          <a
-            href="#"
-            class="boton-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            💬 Escribir por WhatsApp
-          </a>
-        </div>
-      </section>
     </main>
 
+    <!-- =====================================================
+         CARRITO
+    ====================================================== -->
+
+    <div class="overlay" id="overlay"></div>
+
     <aside class="carrito" id="carrito" aria-label="Carrito de compras">
-      <div class="carrito-header">
+      <div class="carrito-encabezado">
         <h2>Tu carrito</h2>
+
         <button
           id="cerrarCarrito"
           class="cerrar-carrito"
+          type="button"
           aria-label="Cerrar carrito"
         >
           ×
@@ -307,50 +377,39 @@
       </div>
 
       <div class="carrito-productos" id="carritoProductos">
-        <p class="carrito-vacio">Tu carrito está vacío.</p>
+        <!-- Los productos del carrito se generan con JavaScript -->
       </div>
 
-      <div class="carrito-footer">
+      <div class="carrito-pie">
         <div class="carrito-total">
-          <span>Total</span>
-          <strong id="carritoTotal">$0</strong>
+          <span> Total </span>
+
+          <strong id="carritoTotal"> $0 </strong>
         </div>
-        <button class="boton-whatsapp carrito-whatsapp" id="botonWhatsApp">
-          💬 Comprar por WhatsApp
+
+        <button id="botonWhatsApp" class="boton-whatsapp" type="button">
+          Comprar por WhatsApp
         </button>
       </div>
     </aside>
 
-    <div class="overlay" id="overlay"></div>
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer class="footer">
-      <div class="contenedor footer-grid">
-        <div>
-          <a href="#inicio" class="logo footer-logo">
-            VIRTUOSA <span>IND</span>
-          </a>
-          <p>Moda femenina para mujeres auténticas.</p>
-        </div>
+      <div class="footer-logo">VIRTUOSA IND</div>
 
-        <div>
-          <h3>Navegación</h3>
-          <a href="#inicio">Inicio</a>
-          <a href="#productos">Colección</a>
-          <a href="#nosotros">Nosotras</a>
-          <a href="#contacto">Contacto</a>
-        </div>
+      <p>Boutique femenina</p>
 
-        <div>
-          <h3>Contacto</h3>
-          <a href="#">Instagram</a>
-          <a href="#">WhatsApp</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 VIRTUOSA IND. Todos los derechos reservados.</p>
-      </div>
+      <p class="copyright">
+        © 2026 VIRTUOSA IND. Todos los derechos reservados.
+      </p>
     </footer>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
     <script src="script.js"></script>
   </body>

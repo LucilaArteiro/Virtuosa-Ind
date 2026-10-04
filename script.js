@@ -43,6 +43,10 @@ const productos = [
   }
 ]
 
+/* =========================================================
+   ELEMENTOS DEL DOM
+========================================================= */
+
 const botonCarrito = document.querySelector('#botonCarrito')
 const cerrarCarrito = document.querySelector('#cerrarCarrito')
 const carrito = document.querySelector('#carrito')
@@ -53,16 +57,30 @@ const cantidadCarrito = document.querySelector('#cantidadCarrito')
 const botonWhatsApp = document.querySelector('#botonWhatsApp')
 
 const botonesAgregar = document.querySelectorAll('.boton-agregar')
+
 const botonesFiltro = document.querySelectorAll('.filtro')
 const productosHTML = document.querySelectorAll('.producto')
+
+/* =========================================================
+   CARRITO
+========================================================= */
 
 let carritoActual = []
 
 try {
-  carritoActual = JSON.parse(localStorage.getItem('carritoVirtuosa')) || []
-} catch {
+  const carritoGuardado = localStorage.getItem('carritoVirtuosa')
+
+  if (carritoGuardado) {
+    carritoActual = JSON.parse(carritoGuardado)
+  }
+} catch (error) {
+  console.error('No se pudo cargar el carrito:', error)
   carritoActual = []
 }
+
+/* =========================================================
+   FORMATEAR PRECIO
+========================================================= */
 
 function formatearPrecio (precio) {
   return new Intl.NumberFormat('es-AR', {
@@ -72,23 +90,49 @@ function formatearPrecio (precio) {
   }).format(precio)
 }
 
+/* =========================================================
+   ABRIR CARRITO
+========================================================= */
+
 function abrirCarrito () {
+  if (!carrito || !overlay) return
+
   carrito.classList.add('abierto')
   overlay.classList.add('activo')
   document.body.classList.add('no-scroll')
 }
 
+/* =========================================================
+   CERRAR CARRITO
+========================================================= */
+
 function cerrarCarritoFuncion () {
+  if (!carrito || !overlay) return
+
   carrito.classList.remove('abierto')
   overlay.classList.remove('activo')
   document.body.classList.remove('no-scroll')
 }
 
+/* =========================================================
+   GUARDAR CARRITO
+========================================================= */
+
 function guardarCarrito () {
-  localStorage.setItem('carritoVirtuosa', JSON.stringify(carritoActual))
+  try {
+    localStorage.setItem('carritoVirtuosa', JSON.stringify(carritoActual))
+  } catch (error) {
+    console.error('No se pudo guardar el carrito:', error)
+  }
 }
 
+/* =========================================================
+   ACTUALIZAR CONTADOR
+========================================================= */
+
 function actualizarContador () {
+  if (!cantidadCarrito) return
+
   const cantidad = carritoActual.reduce((total, producto) => {
     return total + producto.cantidad
   }, 0)
@@ -96,7 +140,13 @@ function actualizarContador () {
   cantidadCarrito.textContent = cantidad
 }
 
+/* =========================================================
+   MOSTRAR CARRITO
+========================================================= */
+
 function mostrarCarrito () {
+  if (!carritoProductos || !carritoTotal) return
+
   if (carritoActual.length === 0) {
     carritoProductos.innerHTML = `
       <div class="carrito-vacio">
@@ -105,7 +155,9 @@ function mostrarCarrito () {
         <small>Agregá productos para comenzar tu compra.</small>
       </div>
     `
+
     carritoTotal.textContent = formatearPrecio(0)
+
     return
   }
 
@@ -115,15 +167,22 @@ function mostrarCarrito () {
 
       return `
         <div class="item-carrito">
-          <img src="${producto.imagen}" alt="${producto.nombre}">
+
+          <img
+            src="${producto.imagen}"
+            alt="${producto.nombre}"
+          >
 
           <div class="item-carrito-info">
+
             <h3>${producto.nombre}</h3>
+
             <p class="precio-unitario">
               ${formatearPrecio(producto.precio)}
             </p>
 
             <div class="cantidad-control">
+
               <button
                 type="button"
                 class="boton-cantidad"
@@ -145,11 +204,13 @@ function mostrarCarrito () {
               >
                 +
               </button>
+
             </div>
 
             <strong class="subtotal">
               ${formatearPrecio(subtotal)}
             </strong>
+
           </div>
 
           <button
@@ -160,6 +221,7 @@ function mostrarCarrito () {
           >
             ×
           </button>
+
         </div>
       `
     })
@@ -172,10 +234,17 @@ function mostrarCarrito () {
   carritoTotal.textContent = formatearPrecio(total)
 }
 
+/* =========================================================
+   AGREGAR PRODUCTO AL CARRITO
+========================================================= */
+
 function agregarAlCarrito (id) {
   const producto = productos.find(producto => producto.id === id)
 
-  if (!producto) return
+  if (!producto) {
+    console.error('Producto no encontrado:', id)
+    return
+  }
 
   const productoExistente = carritoActual.find(item => item.id === id)
 
@@ -191,14 +260,25 @@ function agregarAlCarrito (id) {
   guardarCarrito()
   mostrarCarrito()
   actualizarContador()
+
+  console.log(`Producto agregado: ${producto.nombre}`)
 }
+
+/* =========================================================
+   ELIMINAR PRODUCTO
+========================================================= */
 
 function eliminarDelCarrito (id) {
   carritoActual = carritoActual.filter(producto => producto.id !== id)
+
   guardarCarrito()
   mostrarCarrito()
   actualizarContador()
 }
+
+/* =========================================================
+   CAMBIAR CANTIDAD
+========================================================= */
 
 function cambiarCantidad (id, cambio) {
   const producto = carritoActual.find(item => item.id === id)
@@ -217,53 +297,85 @@ function cambiarCantidad (id, cambio) {
   actualizarContador()
 }
 
+/* =========================================================
+   BOTÓN ABRIR CARRITO
+========================================================= */
+
 if (botonCarrito) {
   botonCarrito.addEventListener('click', abrirCarrito)
 }
+
+/* =========================================================
+   BOTÓN CERRAR CARRITO
+========================================================= */
 
 if (cerrarCarrito) {
   cerrarCarrito.addEventListener('click', cerrarCarritoFuncion)
 }
 
+/* =========================================================
+   OVERLAY
+========================================================= */
+
 if (overlay) {
   overlay.addEventListener('click', cerrarCarritoFuncion)
 }
 
+/* =========================================================
+   BOTONES AGREGAR AL CARRITO
+========================================================= */
+
 botonesAgregar.forEach(boton => {
-  boton.addEventListener('click', () => {
-    agregarAlCarrito(Number(boton.dataset.id))
+  boton.addEventListener('click', function (evento) {
+    evento.preventDefault()
+
+    const id = Number(this.dataset.id)
+
+    agregarAlCarrito(id)
   })
 })
 
+/* =========================================================
+   BOTONES DEL CARRITO
+========================================================= */
+
 if (carritoProductos) {
-  carritoProductos.addEventListener('click', evento => {
+  carritoProductos.addEventListener('click', function (evento) {
     const botonCantidad = evento.target.closest('.boton-cantidad')
 
     if (botonCantidad) {
-      cambiarCantidad(
-        Number(botonCantidad.dataset.id),
-        Number(botonCantidad.dataset.cambio)
-      )
+      const id = Number(botonCantidad.dataset.id)
+
+      const cambio = Number(botonCantidad.dataset.cambio)
+
+      cambiarCantidad(id, cambio)
+
       return
     }
 
     const botonEliminar = evento.target.closest('.boton-eliminar')
 
     if (botonEliminar) {
-      eliminarDelCarrito(Number(botonEliminar.dataset.id))
+      const id = Number(botonEliminar.dataset.id)
+
+      eliminarDelCarrito(id)
     }
   })
 }
 
+/* =========================================================
+   FILTROS DE PRODUCTOS
+========================================================= */
+
 botonesFiltro.forEach(boton => {
-  boton.addEventListener('click', () => {
-    const categoria = boton.dataset.categoria
+  boton.addEventListener('click', function () {
+    const categoria = this.dataset.categoria
 
     botonesFiltro.forEach(botonFiltro => {
       botonFiltro.classList.remove('activo')
     })
 
-    boton.classList.add('activo')
+    this.classList.add('activo')
 
     productosHTML.forEach(producto => {
       const coincide =
@@ -274,21 +386,34 @@ botonesFiltro.forEach(boton => {
   })
 })
 
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
 if (botonWhatsApp) {
-  botonWhatsApp.addEventListener('click', () => {
+  botonWhatsApp.addEventListener('click', function () {
     if (carritoActual.length === 0) {
       alert('Tu carrito está vacío.')
       return
     }
 
-    // Reemplazá este número de prueba por el WhatsApp real, con código de país.
+    /*
+      REEMPLAZAR ESTE NÚMERO POR EL WHATSAPP REAL
+      DE VIRTUOSA IND.
+
+      Formato:
+      549 + código de área + número
+    */
+
     const numeroWhatsApp = '5493410000000'
 
     let mensaje = 'Hola VIRTUOSA IND 💗\n\n'
+
     mensaje += 'Quiero realizar el siguiente pedido:\n\n'
 
     carritoActual.forEach(producto => {
       const subtotal = producto.precio * producto.cantidad
+
       mensaje += `• ${producto.nombre} x${
         producto.cantidad
       } — ${formatearPrecio(subtotal)}\n`
@@ -299,14 +424,20 @@ if (botonWhatsApp) {
     }, 0)
 
     mensaje += `\nTotal: ${formatearPrecio(total)}\n\n`
+
     mensaje += 'Quisiera consultar disponibilidad. ¡Gracias! 💕'
 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
       mensaje
     )}`
-    window.open(url, '_blank', 'noopener,noreferrer')
+
+    window.open(url, '_blank')
   })
 }
+
+/* =========================================================
+   INICIALIZAR
+========================================================= */
 
 mostrarCarrito()
 actualizarContador()
