@@ -4,7 +4,7 @@ const productos = [
     nombre: 'Remera Essential',
     categoria: 'remeras',
     precio: 28000,
-    imagen: 'imagenes/remera-rosa.jpg'
+    imagen: 'imagenes/Remera Essential.jpg'
   },
   {
     id: 2,
