@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conocé la colección de VIRTUOSA IND y prepará tu pedido por WhatsApp."
+    />
+    <title>VIRTUOSA IND | Vestida de fuerza y dignidad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="barra-anuncio">
+      VIRTUOSA IND · Prendas que acompañan tu esencia
+    </div>
+
+    <header class="encabezado">
+      <a class="marca" href="#inicio">
+        VIRTUOSA <span>IND</span>
+        <small>VESTIDA DE FUERZA Y DIGNIDAD</small>
+      </a>
+
+      <nav class="navegacion" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#nosotras">Nosotras</a>
+      </nav>
+
+      <button class="boton-carrito" id="abrir-carrito">
+        Bolsa <span id="contador-carrito">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-texto">
+          <p class="sobretitulo">UNA NUEVA FORMA DE VESTIR</p>
+
+          <h1>Vestida de fuerza<br />y <em>dignidad.</em></h1>
+
+          <p class="hero-descripcion">
+            Prendas pensadas para acompañarte todos los días, con estilo,
+            comodidad y personalidad.
+          </p>
+
+          <a class="boton-principal" href="#catalogo">
+            Explorar colección <span>↗</span>
+          </a>
+
+          <p class="nota-hero">MODA CON PROPÓSITO · VIRTUOSA IND</p>
+        </div>
+
+        <div
+          class="hero-imagen"
+          role="img"
+          aria-label="Inspiración de moda femenina en tonos neutros"
+        >
+          <div class="sello">TU ESENCIA<br />ES TU FUERZA</div>
+        </div>
+      </section>
+
+      <section class="beneficios">
+        <div>
+          <span>✳</span>
+          <p>
+            <strong>Elegí tus prendas</strong>
+            <small>Explorá el catálogo</small>
+          </p>
+        </div>
+
+        <div>
+          <span>♡</span>
+          <p>
+            <strong>Tu estilo, tu esencia</strong>
+            <small>Encontrá tus favoritos</small>
+          </p>
+        </div>
+
+        <div>
+          <span>☏</span>
+          <p>
+            <strong>Pedido por WhatsApp</strong>
+            <small>Coordiná tu compra</small>
+          </p>
+        </div>
+      </section>
+
+      <section class="catalogo seccion" id="catalogo">
+        <div class="encabezado-seccion">
+          <div>
+            <p class="sobretitulo">DESCUBRÍ TU ESTILO</p>
+            <h2>Nuestra selección</h2>
+          </div>
+
+          <p>
+            Una selección para sentirte cómoda,<br />
+            segura y auténtica.
+          </p>
+        </div>
+
+        <div class="filtros" id="filtros" aria-label="Filtrar productos">
+          <button class="filtro activo" data-categoria="Todos">Todos</button>
+          <button class="filtro" data-categoria="Remeras">Remeras</button>
+          <button class="filtro" data-categoria="Blusas">Blusas</button>
+          <button class="filtro" data-categoria="Pantalones">Pantalones</button>
+          <button class="filtro" data-categoria="Conjuntos">Conjuntos</button>
+        </div>
+
+        <div class="productos" id="productos"></div>
+
+        <p class="aviso-demo">
+          Maqueta de muestra: los nombres, las fotos y los precios son
+          ilustrativos.
+        </p>
+      </section>
+
+      <section class="franja" id="nosotras">
+        <p class="sobretitulo">VIRTUOSA IND</p>
+        <h2>Tu estilo también cuenta tu historia.</h2>
+
+        <p>
+          Prendas para acompañar quién sos y todo lo que estás construyendo.
+        </p>
+
+        <a class="boton-claro" href="#catalogo"> Encontrá tus favoritos </a>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <a class="marca marca-pie" href="#inicio">
+        VIRTUOSA <span>IND</span>
+        <small>VESTIDA DE FUERZA Y DIGNIDAD</small>
+      </a>
+
+      <p>Gracias por elegir un emprendimiento local ♡</p>
+
+      <small>
+        © <span id="anio"></span> VIRTUOSA IND · Maqueta demostrativa
+      </small>
+    </footer>
+
+    <div class="fondo-modal" id="fondo-modal" hidden>
+      <aside
+        class="panel-carrito"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-carrito"
+      >
+        <div class="carrito-cabecera">
+          <div>
+            <p class="sobretitulo">TUS FAVORITOS</p>
+            <h2 id="titulo-carrito">Tu bolsa</h2>
+          </div>
+
+          <button
+            class="cerrar-carrito"
+            id="cerrar-carrito"
+            aria-label="Cerrar carrito"
+          >
+            ×
+          </button>
+        </div>
+
+        <div id="items-carrito" class="items-carrito"></div>
+
+        <div class="carrito-vacio" id="carrito-vacio">
+          <span>♡</span>
+          <h3>Tu bolsa está vacía</h3>
+          <p>Agregá las prendas que te gusten y armá tu pedido.</p>
+          <button class="boton-principal" id="seguir-comprando">
+            Ver catálogo
+          </button>
+        </div>
+
+        <div class="carrito-pie" id="carrito-pie" hidden>
+          <div class="total">
+            <span>Total estimado</span>
+            <strong id="total-carrito">$0</strong>
+          </div>
+
+          <p>
+            El pedido se envía por WhatsApp para confirmar disponibilidad,
+            talles y forma de entrega.
+          </p>
+
+          <button class="boton-whatsapp" id="enviar-whatsapp">
+            Enviar pedido por WhatsApp ↗
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
