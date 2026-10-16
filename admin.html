@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración | VIRTUOSA IND</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --rosa: #ead0d0;
+        --rosa-claro: #fbf3f3;
+        --rosa-fuerte: #b77f83;
+        --dorado: #b69a62;
+        --negro: #292323;
+        --blanco: #ffffff;
+        --fondo: #faf7f6;
+        --gris: #77706f;
+        --borde: #eadfdd;
+        --verde: #46765a;
+        --radio: 13px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--fondo);
+        color: var(--negro);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+
+      .disposicion {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 225px minmax(0, 1fr);
+      }
+
+      aside {
+        background: var(--blanco);
+        border-right: 1px solid var(--borde);
+        padding: 24px 15px;
+      }
+
+      .marca {
+        text-align: center;
+        padding: 5px 0 27px;
+        border-bottom: 1px solid var(--borde);
+        margin-bottom: 22px;
+      }
+
+      .marca strong {
+        display: block;
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        letter-spacing: 2px;
+      }
+
+      .marca span {
+        color: var(--dorado);
+        font-size: 10px;
+        letter-spacing: 2px;
+      }
+
+      .etiqueta-menu {
+        font-size: 10px;
+        color: var(--gris);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 0 12px;
+        margin-bottom: 9px;
+      }
+
+      .menu {
+        display: grid;
+        gap: 7px;
+      }
+
+      .menu button {
+        width: 100%;
+        padding: 12px;
+        border: 0;
+        border-radius: 9px;
+        background: transparent;
+        color: var(--gris);
+        text-align: left;
+      }
+
+      .menu button.activo,
+      .menu button:hover {
+        background: var(--rosa-claro);
+        color: var(--negro);
+      }
+
+      .menu .simbolo {
+        display: inline-block;
+        width: 28px;
+      }
+
+      .aviso-demo {
+        margin-top: 35px;
+        background: var(--rosa-claro);
+        border: 1px solid var(--borde);
+        border-radius: var(--radio);
+        padding: 13px;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .barra-superior {
+        background: var(--blanco);
+        border-bottom: 1px solid var(--borde);
+        min-height: 76px;
+        padding: 15px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .barra-superior h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .barra-superior p {
+        color: var(--gris);
+        font-size: 12px;
+        margin: 4px 0 0;
+      }
+
+      .boton {
+        border: 1px solid var(--borde);
+        border-radius: 9px;
+        background: var(--blanco);
+        color: var(--negro);
+        padding: 10px 14px;
+        font-weight: 600;
+      }
+
+      .boton:hover {
+        opacity: 0.85;
+      }
+
+      .boton-principal {
+        background: var(--rosa-fuerte);
+        border-color: var(--rosa-fuerte);
+        color: white;
+      }
+
+      .boton-peligro {
+        color: #a34040;
+        border-color: #e8cccc;
+      }
+
+      .contenido {
+        max-width: 1450px;
+        margin: auto;
+        padding: 26px 28px 45px;
+      }
+
+      .encabezado-seccion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .encabezado-seccion h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 0 0 5px;
+      }
+
+      .encabezado-seccion p {
+        margin: 0;
+        color: var(--gris);
+        font-size: 13px;
+      }
+
+      .estadisticas {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 27px;
+      }
+
+      .tarjeta-estadistica {
+        padding: 20px;
+        background: white;
+        border: 1px solid var(--borde);
+        border-radius: var(--radio);
+      }
+
+      .tarjeta-estadistica span {
+        color: var(--gris);
+        font-size: 12px;
+      }
+
+      .tarjeta-estadistica strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 27px;
+        font-weight: 600;
+      }
+
+      .tarjeta-estadistica small {
+        color: var(--rosa-fuerte);
+        font-size: 11px;
+      }
+
+      .panel {
+        background: white;
+        border: 1px solid var(--borde);
+        border-radius: var(--radio);
+        padding: 20px;
+        margin-bottom: 20px;
+        min-width: 0;
+      }
+
+      .panel h3 {
+        font-size: 16px;
+        margin: 0 0 16px;
+      }
+
+      .controles {
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) 190px;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--borde);
+        background: white;
+        color: var(--negro);
+        padding: 11px 12px;
+        border-radius: 8px;
+        outline-color: var(--rosa-fuerte);
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+
+      .tabla-contenedor {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      th {
+        font-size: 11px;
+        color: var(--gris);
+        font-weight: 600;
+        background: #fcf9f8;
+      }
+
+      th,
+      td {
+        padding: 13px 10px;
+        border-bottom: 1px solid #f0e8e6;
+      }
+
+      td {
+        font-size: 12px;
+      }
+
+      .producto-tabla {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: normal;
+        min-width: 160px;
+      }
+
+      .miniatura {
+        width: 48px;
+        height: 55px;
+        border-radius: 7px;
+        background: var(--rosa-claro);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .miniatura-vacia {
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+      }
+
+      .producto-tabla strong {
+        display: block;
+      }
+      .producto-tabla small {
+        color: var(--gris);
+      }
+
+      .estado {
+        display: inline-block;
+        padding: 5px 8px;
+        border-radius: 20px;
+        font-size: 10px;
+        background: #f4e9e9;
+        color: #875c60;
+      }
+
+      .estado-disponible {
+        background: #edf4ee;
+        color: #46765a;
+      }
+
+      .acciones-tabla {
+        display: flex;
+        gap: 6px;
+      }
+
+      .boton-mini {
+        border: 1px solid var(--borde);
+        background: white;
+        border-radius: 7px;
+        padding: 7px 9px;
+        font-size: 11px;
+      }
+
+      .oculto {
+        display: none !important;
+      }
+
+      .formulario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .campo-completo {
+        grid-column: 1 / -1;
+      }
+
+      .campo {
+        min-width: 0;
+      }
+
+      .campo small {
+        display: block;
+        color: var(--gris);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+
+      .campo textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .precio-con-simbolo {
+        display: flex;
+        border: 1px solid var(--borde);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .precio-con-simbolo span {
+        background: var(--rosa-claro);
+        padding: 11px 13px;
+        border-right: 1px solid var(--borde);
+      }
+
+      .precio-con-simbolo input {
+        border: 0;
+        border-radius: 0;
+      }
+
+      .zona-foto {
+        border: 1px dashed #d7b8b9;
+        background: #fffafa;
+        border-radius: 11px;
+        padding: 17px;
+        text-align: center;
+      }
+
+      .zona-foto img {
+        max-width: 170px;
+        max-height: 190px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto 12px;
+        border-radius: 8px;
+      }
+
+      .zona-foto input {
+        margin-top: 12px;
+      }
+
+      .opciones-talles,
+      .opciones-colores {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .opcion-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fcf8f7;
+        border: 1px solid var(--borde);
+        border-radius: 8px;
+        padding: 9px 11px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .opcion-check input {
+        width: auto;
+        margin: 0;
+        accent-color: var(--rosa-fuerte);
+      }
+
+      .pie-formulario {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        margin-top: 22px;
+      }
+
+      .mensaje-vacio {
+        padding: 32px 15px;
+        text-align: center;
+        color: var(--gris);
+      }
+
+      .mensaje-vacio strong {
+        display: block;
+        color: var(--negro);
+        margin-bottom: 6px;
+      }
+
+      .nota {
+        color: var(--gris);
+        font-size: 11px;
+        line-height: 1.7;
+      }
+
+      .notificacion {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--negro);
+        color: white;
+        padding: 13px 18px;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px #0002;
+        z-index: 10;
+        max-width: calc(100% - 30px);
+        text-align: center;
+      }
+
+      @media (max-width: 800px) {
+        .disposicion {
+          grid-template-columns: 1fr;
+        }
+
+        aside {
+          padding: 14px;
+          border-right: 0;
+          border-bottom: 1px solid var(--borde);
+        }
+
+        .marca {
+          padding: 4px 0 12px;
+          margin-bottom: 12px;
+        }
+
+        .marca strong {
+          font-size: 21px;
+        }
+
+        .menu {
+          display: flex;
+          gap: 6px;
+          overflow-x: auto;
+        }
+
+        .menu button {
+          width: auto;
+          flex-shrink: 0;
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        .menu .simbolo {
+          width: auto;
+          margin-right: 5px;
+        }
+        .etiqueta-menu,
+        .aviso-demo {
+          display: none;
+        }
+
+        .barra-superior {
+          padding: 15px;
+        }
+        .barra-superior h1 {
+          font-size: 21px;
+        }
+
+        .contenido {
+          padding: 20px 14px 35px;
+        }
+        .estadisticas {
+          gap: 8px;
+        }
+        .tarjeta-estadistica {
+          padding: 13px 10px;
+        }
+        .tarjeta-estadistica strong {
+          font-size: 22px;
+        }
+        .tarjeta-estadistica span {
+          font-size: 11px;
+        }
+        .tarjeta-estadistica small {
+          font-size: 10px;
+        }
+
+        .panel {
+          padding: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .controles {
+          grid-template-columns: 1fr;
+        }
+        .formulario-grid {
+          grid-template-columns: 1fr;
+        }
+        .campo-completo {
+          grid-column: auto;
+        }
+        .estadisticas {
+          grid-template-columns: 1fr;
+        }
+        .tarjeta-estadistica strong {
+          margin-top: 5px;
+        }
+        .barra-superior .boton {
+          padding: 9px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="disposicion">
+      <aside>
+        <div class="marca">
+          <strong>VIRTUOSA IND</strong>
+          <span>PANEL ADMINISTRATIVO</span>
+        </div>
+
+        <div class="etiqueta-menu">Administración</div>
+
+        <nav class="menu">
+          <button class="activo" data-vista="inicio">
+            <span class="simbolo">⌂</span> Inicio
+          </button>
+          <button data-vista="productos">
+            <span class="simbolo">◇</span> Productos
+          </button>
+          <button data-vista="formulario">
+            <span class="simbolo">＋</span> Agregar prenda
+          </button>
+        </nav>
+
+        <div class="aviso-demo">
+          <strong>✦ Modo demostración</strong>
+          <p>
+            Los cambios se guardan en este navegador. Esta maqueta todavía no
+            actualiza la tienda pública.
+          </p>
+        </div>
+      </aside>
+
+      <main>
+        <header class="barra-superior">
+          <div>
+            <h1 id="titulo-pagina">¡Hola!</h1>
+            <p>Administrá las prendas de tu tienda.</p>
+          </div>
+          <button class="boton boton-principal" id="nuevo-desde-header">
+            + Nueva prenda
+          </button>
+        </header>
+
+        <div class="contenido">
+          <!-- INICIO -->
+          <section id="vista-inicio">
+            <div class="encabezado-seccion">
+              <div>
+                <h2>Resumen de tu tienda</h2>
+                <p>Un vistazo rápido a tus productos.</p>
+              </div>
+            </div>
+
+            <div class="estadisticas">
+              <div class="tarjeta-estadistica">
+                <span>Total de productos</span>
+                <strong id="total-productos">0</strong>
+                <small>Prendas registradas</small>
+              </div>
+
+              <div class="tarjeta-estadistica">
+                <span>Productos disponibles</span>
+                <strong id="disponibles">0</strong>
+                <small>Con stock disponible</small>
+              </div>
+
+              <div class="tarjeta-estadistica">
+                <span>Productos sin stock</span>
+                <strong id="agotados">0</strong>
+                <small>Para revisar</small>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="encabezado-seccion">
+                <div>
+                  <h3>Últimas prendas agregadas</h3>
+                  <p class="nota">
+                    Los productos de esta maqueta son ejemplos.
+                  </p>
+                </div>
+                <button class="boton" data-ir="productos">Ver productos</button>
+              </div>
+
+              <div class="tabla-contenedor">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>PRODUCTO</th>
+                      <th>PRECIO</th>
+                      <th>STOCK</th>
+                      <th>ESTADO</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ultimos-productos"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- PRODUCTOS -->
+          <section id="vista-productos" class="oculto">
+            <div class="encabezado-seccion">
+              <div>
+                <h2>Mis productos</h2>
+                <p>Consultá y administrá las prendas de la tienda.</p>
+              </div>
+              <button class="boton boton-principal" id="nuevo-desde-lista">
+                + Agregar producto
+              </button>
+            </div>
+
+            <div class="panel">
+              <div class="controles">
+                <input
+                  id="busqueda"
+                  type="search"
+                  placeholder="Buscar una prenda..."
+                />
+                <select id="filtro-categoria">
+                  <option value="">Todas las categorías</option>
+                  <option>Remeras</option>
+                  <option>Blusas</option>
+                  <option>Pantalones</option>
+                  <option>Conjuntos</option>
+                  <option>Vestidos</option>
+                  <option>Otros</option>
+                </select>
+              </div>
+
+              <div class="tabla-contenedor">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>PRODUCTO</th>
+                      <th>CATEGORÍA</th>
+                      <th>PRECIO</th>
+                      <th>STOCK</th>
+                      <th>ESTADO</th>
+                      <th>ACCIONES</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lista-productos"></tbody>
+                </table>
+              </div>
+
+              <div class="mensaje-vacio oculto" id="sin-resultados">
+                <strong>No encontramos productos</strong>
+                Probá con otra búsqueda o agregá una prenda nueva.
+              </div>
+            </div>
+          </section>
+
+          <!-- FORMULARIO -->
+          <section id="vista-formulario" class="oculto">
+            <div class="encabezado-seccion">
+              <div>
+                <h2 id="titulo-formulario">Agregar una prenda</h2>
+                <p>Completá la información del producto.</p>
+              </div>
+            </div>
+
+            <form id="form-producto" class="panel">
+              <input type="hidden" id="producto-id" />
+
+              <div class="formulario-grid">
+                <div class="campo">
+                  <label for="nombre">Nombre de la prenda *</label>
+                  <input
+                    id="nombre"
+                    required
+                    maxlength="100"
+                    placeholder="Ej. Remera Essential"
+                  />
+                </div>
+
+                <div class="campo">
+                  <label for="categoria">Categoría *</label>
+                  <select id="categoria" required>
+                    <option value="">Seleccionar categoría</option>
+                    <option>Remeras</option>
+                    <option>Blusas</option>
+                    <option>Pantalones</option>
+                    <option>Conjuntos</option>
+                    <option>Vestidos</option>
+                    <option>Otros</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label for="precio">Precio de venta *</label>
+                  <div class="precio-con-simbolo">
+                    <span>$</span>
+                    <input
+                      id="precio"
+                      type="number"
+                      min="1"
+                      step="0.01"
+                      required
+                      placeholder="18000"
+                    />
+                  </div>
+                </div>
+
+                <div class="campo">
+                  <label for="stock">Cantidad disponible *</label>
+                  <input
+                    id="stock"
+                    type="number"
+                    min="0"
+                    step="1"
+                    required
+                    value="1"
+                  />
+                  <small
+                    >Ingresá la cantidad total disponible de esta prenda.</small
+                  >
+                </div>
+
+                <div class="campo campo-completo">
+                  <label>Talles disponibles</label>
+                  <div class="opciones-talles">
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="XS" />
+                      XS</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="S" />
+                      S</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="M" />
+                      M</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="L" />
+                      L</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="XL" />
+                      XL</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="talles" value="Único" />
+                      Único</label
+                    >
+                  </div>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label>Colores disponibles</label>
+                  <div class="opciones-colores">
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Negro" />
+                      Negro</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Blanco" />
+                      Blanco</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Rosa" />
+                      Rosa</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Beige" />
+                      Beige</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Marrón" />
+                      Marrón</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Azul" />
+                      Azul</label
+                    >
+                    <label class="opcion-check"
+                      ><input type="checkbox" name="colores" value="Otro" />
+                      Otro</label
+                    >
+                  </div>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label for="descripcion">Descripción de la prenda</label>
+                  <textarea
+                    id="descripcion"
+                    placeholder="Material, calce, detalles y recomendaciones..."
+                  ></textarea>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label>Fotografía del producto</label>
+                  <div class="zona-foto">
+                    <div id="foto-vacia">
+                      <span style="font-size: 32px">♡</span>
+                      <p>Elegí una foto de la prenda.</p>
+                    </div>
+                    <img
+                      id="vista-foto"
+                      class="oculto"
+                      alt="Vista previa de la prenda"
+                    />
+                    <input id="foto" type="file" accept="image/*" />
+                    <button
+                      class="boton boton-peligro oculto"
+                      type="button"
+                      id="quitar-foto"
+                    >
+                      Quitar fotografía
+                    </button>
+                  </div>
+                  <small class="nota">
+                    Para esta maqueta, la imagen se reduce antes de guardarse en
+                    el navegador.
+                  </small>
+                </div>
+              </div>
+
+              <div class="pie-formulario">
+                <button class="boton" type="button" id="cancelar">
+                  Cancelar
+                </button>
+                <button class="boton boton-principal" type="submit">
+                  Guardar producto
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <p class="nota">
+            VIRTUOSA IND · Panel de demostración. Los datos y las fotos se
+            guardan localmente en este navegador; no hay sincronización entre
+            dispositivos.
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <div id="notificacion" class="notificacion oculto" role="status"></div>
+
+    <script>
+      const CLAVE = 'virtuosaAdminDemoV1'
+
+      const ejemplos = [
+        {
+          id: 'ejemplo-1',
+          nombre: 'Remera Essential',
+          categoria: 'Remeras',
+          precio: 18000,
+          stock: 8,
+          talles: ['S', 'M', 'L'],
+          colores: ['Blanco', 'Negro'],
+          descripcion: 'Remera básica para todos los días.',
+          foto: ''
+        },
+        {
+          id: 'ejemplo-2',
+          nombre: 'Blusa Aura',
+          categoria: 'Blusas',
+          precio: 24000,
+          stock: 4,
+          talles: ['S', 'M', 'L'],
+          colores: ['Blanco', 'Rosa'],
+          descripcion: 'Blusa delicada con un estilo elegante.',
+          foto: ''
+        },
+        {
+          id: 'ejemplo-3',
+          nombre: 'Pantalón Sastrero',
+          categoria: 'Pantalones',
+          precio: 32000,
+          stock: 0,
+          talles: ['S', 'M'],
+          colores: ['Negro', 'Beige'],
+          descripcion: 'Pantalón de estilo sastrero.',
+          foto: ''
+        }
+      ]
+
+      let productos = cargarProductos()
+      let fotoActual = ''
+      let avisoTimer
+
+      const $ = id => document.getElementById(id)
+
+      function cargarProductos() {
+        try {
+          const guardados = localStorage.getItem(CLAVE)
+          return guardados
+            ? JSON.parse(guardados)
+            : ejemplos.map(p => ({ ...p }))
+        } catch {
+          return ejemplos.map(p => ({ ...p }))
+        }
+      }
+
+      function guardarProductos() {
+        try {
+          localStorage.setItem(CLAVE, JSON.stringify(productos))
+          return true
+        } catch {
+          notificar('No se pudo guardar. La imagen puede ser demasiado grande.')
+          return false
+        }
+      }
+
+      function moneda(valor) {
+        return new Intl.NumberFormat('es-AR', {
+          style: 'currency',
+          currency: 'ARS',
+          maximumFractionDigits: 2
+        }).format(valor)
+      }
+
+      function notificar(mensaje) {
+        const elemento = $('notificacion')
+        elemento.textContent = mensaje
+        elemento.classList.remove('oculto')
+        clearTimeout(avisoTimer)
+        avisoTimer = setTimeout(() => elemento.classList.add('oculto'), 3000)
+      }
+
+      function cambiarVista(vista) {
+        ;['inicio', 'productos', 'formulario'].forEach(nombre => {
+          $('vista-' + nombre).classList.toggle('oculto', nombre !== vista)
+        })
+
+        document.querySelectorAll('[data-vista]').forEach(boton => {
+          boton.classList.toggle('activo', boton.dataset.vista === vista)
+        })
+
+        const titulos = {
+          inicio: '¡Hola!',
+          productos: 'Mis productos',
+          formulario: $('producto-id').value
+            ? 'Editar producto'
+            : 'Nueva prenda'
+        }
+
+        $('titulo-pagina').textContent = titulos[vista]
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+
+      function miniatura(producto) {
+        if (producto.foto) {
+          return `<img class="miniatura" src="${producto.foto}" alt="">`
+        }
+
+        return `<div class="miniatura miniatura-vacia">♡</div>`
+      }
+
+      function estado(producto) {
+        return producto.stock > 0
+          ? '<span class="estado estado-disponible">Disponible</span>'
+          : '<span class="estado">Sin stock</span>'
+      }
+
+      function textoSeguro(texto) {
+        return String(texto ?? '').replace(
+          /[&<>"']/g,
+          caracter =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+              "'": '&#39;'
+            }[caracter])
+        )
+      }
+
+      function fila(producto, conAcciones = false) {
+        return `
+        <tr>
+          <td>
+            <div class="producto-tabla">
+              ${miniatura(producto)}
+              <div>
+                <strong>${textoSeguro(producto.nombre)}</strong>
+                <small>${textoSeguro(
+                  producto.talles.join(', ') || 'Sin talles'
+                )}</small>
+              </div>
+            </div>
+          </td>
+          ${conAcciones ? `<td>${textoSeguro(producto.categoria)}</td>` : ''}
+          <td>${moneda(producto.precio)}</td>
+          <td>${producto.stock}</td>
+          <td>${estado(producto)}</td>
+          ${
+            conAcciones
+              ? `
+            <td>
+              <div class="acciones-tabla">
+                <button class="boton-mini" data-editar="${producto.id}">Editar</button>
+                <button class="boton-mini" data-eliminar="${producto.id}">Eliminar</button>
+              </div>
+            </td>`
+              : ''
+          }
+        </tr>
+      `
+      }
+
+      function renderizar() {
+        $('total-productos').textContent = productos.length
+        $('disponibles').textContent = productos.filter(p => p.stock > 0).length
+        $('agotados').textContent = productos.filter(p => p.stock === 0).length
+
+        const recientes = [...productos].slice(-4).reverse()
+        $('ultimos-productos').innerHTML = recientes.length
+          ? recientes.map(p => fila(p)).join('')
+          : `<tr><td colspan="4">Todavía no hay productos.</td></tr>`
+
+        const busqueda = $('busqueda').value.trim().toLowerCase()
+        const categoria = $('filtro-categoria').value
+
+        const filtrados = productos.filter(
+          p =>
+            p.nombre.toLowerCase().includes(busqueda) &&
+            (!categoria || p.categoria === categoria)
+        )
+
+        $('lista-productos').innerHTML = filtrados
+          .map(p => fila(p, true))
+          .join('')
+
+        $('sin-resultados').classList.toggle('oculto', filtrados.length > 0)
+      }
+
+      function marcarOpciones(nombre, valores) {
+        document.querySelectorAll(`input[name="${nombre}"]`).forEach(input => {
+          input.checked = valores.includes(input.value)
+        })
+      }
+
+      function obtenerOpciones(nombre) {
+        return [
+          ...document.querySelectorAll(`input[name="${nombre}"]:checked`)
+        ].map(input => input.value)
+      }
+
+      function abrirFormulario(producto = null) {
+        $('form-producto').reset()
+        $('producto-id').value = producto?.id || ''
+        $('titulo-formulario').textContent = producto
+          ? 'Editar prenda'
+          : 'Agregar una prenda'
+        $('stock').value = producto ? producto.stock : 1
+
+        fotoActual = producto?.foto || ''
+        actualizarFoto()
+
+        marcarOpciones('talles', producto?.talles || [])
+        marcarOpciones('colores', producto?.colores || [])
+
+        if (producto) {
+          $('nombre').value = producto.nombre
+          $('categoria').value = producto.categoria
+          $('precio').value = producto.precio
+          $('stock').value = producto.stock
+          $('descripcion').value = producto.descripcion || ''
+        }
+
+        $('titulo-pagina').textContent = producto
+          ? 'Editar producto'
+          : 'Nueva prenda'
+        cambiarVista('formulario')
+        $('titulo-pagina').textContent = producto
+          ? 'Editar producto'
+          : 'Nueva prenda'
+      }
+
+      function actualizarFoto() {
+        const img = $('vista-foto')
+        const vacia = $('foto-vacia')
+        const quitar = $('quitar-foto')
+
+        if (fotoActual) {
+          img.src = fotoActual
+          img.classList.remove('oculto')
+          vacia.classList.add('oculto')
+          quitar.classList.remove('oculto')
+        } else {
+          img.removeAttribute('src')
+          img.classList.add('oculto')
+          vacia.classList.remove('oculto')
+          quitar.classList.add('oculto')
+        }
+      }
+
+      function reducirImagen(archivo) {
+        return new Promise((resolve, reject) => {
+          if (!archivo.type.startsWith('image/')) {
+            reject(new Error('El archivo seleccionado no es una imagen.'))
+            return
+          }
+
+          const lector = new FileReader()
+
+          lector.onerror = () => reject(new Error('No se pudo leer la imagen.'))
+
+          lector.onload = () => {
+            const img = new Image()
+
+            img.onerror = () => reject(new Error('No se pudo abrir la imagen.'))
+
+            img.onload = () => {
+              const maximo = 700
+              const escala = Math.min(
+                1,
+                maximo / Math.max(img.width, img.height)
+              )
+              const canvas = document.createElement('canvas')
+
+              canvas.width = Math.round(img.width * escala)
+              canvas.height = Math.round(img.height * escala)
+
+              const contexto = canvas.getContext('2d')
+              contexto.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+              resolve(canvas.toDataURL('image/jpeg', 0.75))
+            }
+
+            img.src = lector.result
+          }
+
+          lector.readAsDataURL(archivo)
+        })
+      }
+
+      document.querySelectorAll('[data-vista]').forEach(boton => {
+        boton.addEventListener('click', () => cambiarVista(boton.dataset.vista))
+      })
+
+      document.querySelectorAll('[data-ir]').forEach(boton => {
+        boton.addEventListener('click', () => cambiarVista(boton.dataset.ir))
+      })
+
+      $('nuevo-desde-header').addEventListener('click', () => abrirFormulario())
+      $('nuevo-desde-lista').addEventListener('click', () => abrirFormulario())
+      $('cancelar').addEventListener('click', () => cambiarVista('productos'))
+
+      $('busqueda').addEventListener('input', renderizar)
+      $('filtro-categoria').addEventListener('change', renderizar)
+
+      $('lista-productos').addEventListener('click', evento => {
+        const editar = evento.target.closest('[data-editar]')
+        const eliminar = evento.target.closest('[data-eliminar]')
+
+        if (editar) {
+          const producto = productos.find(p => p.id === editar.dataset.editar)
+          if (producto) abrirFormulario(producto)
+        }
+
+        if (eliminar) {
+          const producto = productos.find(
+            p => p.id === eliminar.dataset.eliminar
+          )
+          if (!producto) return
+
+          if (confirm(`¿Querés eliminar "${producto.nombre}" de la maqueta?`)) {
+            productos = productos.filter(p => p.id !== producto.id)
+            if (guardarProductos()) {
+              renderizar()
+              notificar('Producto eliminado.')
+            }
+          }
+        }
+      })
+
+      $('foto').addEventListener('change', async evento => {
+        const archivo = evento.target.files[0]
+        if (!archivo) return
+
+        if (archivo.size > 12 * 1024 * 1024) {
+          notificar('La imagen debe pesar menos de 12 MB.')
+          evento.target.value = ''
+          return
+        }
+
+        try {
+          fotoActual = await reducirImagen(archivo)
+          actualizarFoto()
+          notificar('Fotografía cargada.')
+        } catch (error) {
+          notificar(error.message || 'No se pudo cargar la foto.')
+        }
+      })
+
+      $('quitar-foto').addEventListener('click', () => {
+        fotoActual = ''
+        $('foto').value = ''
+        actualizarFoto()
+      })
+
+      $('form-producto').addEventListener('submit', evento => {
+        evento.preventDefault()
+
+        const id = $('producto-id').value
+        const producto = {
+          id:
+            id ||
+            (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+          nombre: $('nombre').value.trim(),
+          categoria: $('categoria').value,
+          precio: Number($('precio').value),
+          stock: Number($('stock').value),
+          talles: obtenerOpciones('talles'),
+          colores: obtenerOpciones('colores'),
+          descripcion: $('descripcion').value.trim(),
+          foto: fotoActual
+        }
+
+        if (
+          !producto.nombre ||
+          !producto.categoria ||
+          !Number.isFinite(producto.precio) ||
+          producto.precio <= 0 ||
+          !Number.isInteger(producto.stock) ||
+          producto.stock < 0
+        ) {
+          notificar('Revisá el nombre, la categoría, el precio y el stock.')
+          return
+        }
+
+        const anteriores = [...productos]
+
+        if (id) {
+          productos = productos.map(p => (p.id === id ? producto : p))
+        } else {
+          productos.push(producto)
+        }
+
+        if (!guardarProductos()) {
+          productos = anteriores
+          return
+        }
+
+        renderizar()
+        cambiarVista('productos')
+        notificar(id ? 'Producto actualizado.' : 'Producto agregado.')
+      })
+
+      renderizar()
+    </script>
+  </body>
+</html>
