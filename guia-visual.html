@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Identidad visual | VIRTUOSA IND</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --rosa: #ead0d0;
+        --rosa-claro: #f8eeee;
+        --rosa-fuerte: #b77f83;
+        --dorado: #b69a62;
+        --negro: #242020;
+        --blanco: #fffdfb;
+        --borde: #e9e0dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #faf7f5;
+        color: var(--negro);
+        font-family: 'DM Sans', sans-serif;
+        line-height: 1.6;
+      }
+
+      button,
+      textarea {
+        font: inherit;
+      }
+
+      header {
+        padding: 30px 20px;
+        text-align: center;
+        background: var(--negro);
+        color: white;
+      }
+
+      .marca {
+        color: var(--dorado);
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        letter-spacing: 4px;
+      }
+
+      header p {
+        margin: 4px 0 0;
+        color: #e9dcdc;
+        font-size: 13px;
+      }
+
+      main {
+        width: min(900px, 100%);
+        margin: auto;
+        padding: 24px 16px 60px;
+      }
+
+      .introduccion {
+        text-align: center;
+        padding: 25px 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+      }
+
+      h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(30px, 6vw, 44px);
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        margin-top: 0;
+      }
+
+      .introduccion p {
+        color: #716866;
+        max-width: 560px;
+        margin: auto;
+      }
+
+      section {
+        background: white;
+        border: 1px solid var(--borde);
+        border-radius: 18px;
+        padding: 22px;
+        margin: 20px 0;
+      }
+
+      .subtitulo {
+        color: #756b68;
+        font-size: 14px;
+        margin-top: -8px;
+        margin-bottom: 20px;
+      }
+
+      .opciones {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+
+      .opcion {
+        display: block;
+        text-align: left;
+        padding: 14px;
+        border: 2px solid var(--borde);
+        border-radius: 13px;
+        background: white;
+        color: var(--negro);
+        cursor: pointer;
+        min-width: 0;
+      }
+
+      .opcion.seleccionada {
+        border-color: var(--rosa-fuerte);
+        background: #fff9f9;
+      }
+
+      .opcion strong {
+        display: block;
+      }
+
+      .opcion small {
+        display: block;
+        color: #766d69;
+        margin-top: 4px;
+      }
+
+      .muestras {
+        display: flex;
+        gap: 5px;
+        margin: 14px 0 10px;
+      }
+
+      .muestra {
+        flex: 1;
+        min-width: 0;
+        border: 1px solid #00000012;
+        border-radius: 7px;
+        overflow: hidden;
+        cursor: pointer;
+        padding: 0;
+        background: white;
+      }
+
+      .cuadro-color {
+        display: block;
+        height: 48px;
+      }
+
+      .hex {
+        display: block;
+        font-size: 10px;
+        padding: 5px 1px;
+        text-align: center;
+        overflow-wrap: anywhere;
+      }
+
+      .ayuda {
+        font-size: 12px;
+        color: #766d69;
+      }
+
+      .vista-tipografia {
+        padding: 14px 0 4px;
+        font-size: 25px;
+        overflow-wrap: anywhere;
+      }
+
+      .muestra-playfair {
+        font-family: 'Playfair Display', serif;
+      }
+      .muestra-cormorant {
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .muestra-montserrat {
+        font-family: 'Montserrat', sans-serif;
+      }
+      .muestra-dm {
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      .preview {
+        margin-top: 18px;
+        border: 1px solid var(--borde);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .preview-barra {
+        padding: 15px;
+        text-align: center;
+        background: var(--negro);
+        color: white;
+        letter-spacing: 3px;
+        font-family: 'Playfair Display', serif;
+      }
+
+      .preview-contenido {
+        padding: 22px 15px;
+        text-align: center;
+        background: var(--rosa-claro);
+      }
+
+      .preview-contenido h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 27px;
+        margin: 5px 0;
+      }
+
+      .preview-contenido p {
+        font-size: 13px;
+      }
+
+      .boton-demo {
+        display: inline-block;
+        background: var(--rosa-fuerte);
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 12px;
+      }
+
+      .pregunta {
+        margin: 18px 0;
+      }
+
+      .pregunta label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--borde);
+        border-radius: 9px;
+        padding: 12px;
+        background: white;
+        color: var(--negro);
+      }
+
+      textarea {
+        min-height: 95px;
+        resize: vertical;
+      }
+
+      .acciones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .accion {
+        padding: 13px 10px;
+        border-radius: 9px;
+        border: 1px solid var(--negro);
+        background: white;
+        color: var(--negro);
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .accion.principal {
+        background: var(--negro);
+        color: white;
+      }
+
+      #resultado {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        margin-top: 16px;
+        padding: 15px;
+        border-radius: 10px;
+        background: var(--rosa-claro);
+        font-size: 14px;
+        display: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px;
+        color: #766d69;
+        font-size: 12px;
+      }
+
+      @media (max-width: 480px) {
+        section {
+          padding: 16px;
+        }
+        .acciones {
+          grid-template-columns: 1fr;
+        }
+        .cuadro-color {
+          height: 40px;
+        }
+        .hex {
+          font-size: 9px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="marca">VIRTUOSA IND</div>
+      <p>Vestida de fuerza y dignidad</p>
+    </header>
+
+    <main>
+      <div class="introduccion">
+        <h1>Diseñemos tu marca</h1>
+        <p>
+          Esta guía es para elegir juntas el estilo de tu tienda online. No hay
+          respuestas correctas: elegí lo que más te represente.
+        </p>
+      </div>
+
+      <section>
+        <h2>01. Elegí tu paleta</h2>
+        <p class="subtitulo">
+          Tocá una combinación para seleccionarla. Tocá un color para copiar su
+          código.
+        </p>
+
+        <div class="opciones" id="paletas"></div>
+        <p class="ayuda" id="mensaje-color" aria-live="polite"></p>
+      </section>
+
+      <section>
+        <h2>02. Elegí las letras</h2>
+        <p class="subtitulo">
+          ¿Qué estilo te gusta para el nombre de tu marca?
+        </p>
+
+        <div class="opciones" id="fuentes"></div>
+        <p class="ayuda">
+          Después podemos combinar una letra para los títulos con otra para los
+          textos.
+        </p>
+      </section>
+
+      <section>
+        <h2>03. Así podría verse tu tienda</h2>
+        <p class="subtitulo">
+          Esta vista previa cambia con la paleta que elijas.
+        </p>
+
+        <div class="preview" id="preview">
+          <div class="preview-barra" id="preview-marca">VIRTUOSA IND</div>
+          <div class="preview-contenido" id="preview-fondo">
+            <p>UNA FORMA DE EXPRESARTE</p>
+            <h3>Encontrá tu estilo</h3>
+            <p>Prendas elegidas para vos.</p>
+            <span class="boton-demo" id="preview-boton">VER COLECCIÓN</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>04. Contame qué te gusta</h2>
+
+        <div class="pregunta">
+          <label for="estilo">¿Qué estilo te representa más?</label>
+          <select id="estilo">
+            <option value="">Elegir una opción</option>
+            <option>Elegante y sofisticado</option>
+            <option>Femenino y delicado</option>
+            <option>Moderno y minimalista</option>
+            <option>Juvenil y llamativo</option>
+            <option>Natural y sencillo</option>
+          </select>
+        </div>
+
+        <div class="pregunta">
+          <label for="fotos">¿Qué tipo de fotos preferís?</label>
+          <select id="fotos">
+            <option value="">Elegir una opción</option>
+            <option>Prendas con fondo blanco</option>
+            <option>Modelos usando las prendas</option>
+            <option>Fotos estilo editorial</option>
+            <option>Una mezcla de todas</option>
+          </select>
+        </div>
+
+        <div class="pregunta">
+          <label for="carrito">¿Cómo querés que funcionen los pedidos?</label>
+          <select id="carrito">
+            <option value="">Elegir una opción</option>
+            <option>Carrito y pedido final por WhatsApp</option>
+            <option>Consultar cada prenda por WhatsApp</option>
+            <option>Carrito con pago online en el futuro</option>
+          </select>
+        </div>
+
+        <div class="pregunta">
+          <label for="referencias">¿Qué otras ideas tenés?</label>
+          <textarea
+            id="referencias"
+            placeholder="Colores que no te gustan, tiendas que te inspiran, detalles que querés incluir..."
+          ></textarea>
+        </div>
+
+        <div class="acciones">
+          <button class="accion principal" id="guardar">
+            Guardar mis elecciones
+          </button>
+          <button class="accion" id="copiar">Copiar resumen</button>
+        </div>
+
+        <div id="resultado" role="status"></div>
+        <p class="ayuda">
+          Las elecciones se guardan en este navegador. Al terminar, copiá el
+          resumen y guardalo también en tus notas.
+        </p>
+      </section>
+    </main>
+
+    <footer>VIRTUOSA IND · Guía de identidad visual</footer>
+
+    <script>
+      const paletas = [
+        {
+          nombre: 'Rosa romántico y dorado',
+          descripcion: 'Femenina, cálida y delicada.',
+          colores: ['#F8EEEE', '#EAD0D0', '#B77F83', '#B69A62', '#242020']
+        },
+        {
+          nombre: 'Blanco, negro y dorado',
+          descripcion: 'Elegante, sobria y sofisticada.',
+          colores: ['#FFFFFF', '#F5F1EC', '#D6C3A1', '#B69A62', '#1F1F1F']
+        },
+        {
+          nombre: 'Rosa empolvado y beige',
+          descripcion: 'Suave, moderna y natural.',
+          colores: ['#F7F1ED', '#E8D5CC', '#D4AAA5', '#8C6965', '#302827']
+        }
+      ]
+
+      const fuentes = [
+        {
+          nombre: 'Playfair Display',
+          clase: 'muestra-playfair',
+          estilo: 'Elegante y editorial',
+          ejemplo: 'VIRTUOSA IND'
+        },
+        {
+          nombre: 'Cormorant Garamond',
+          clase: 'muestra-cormorant',
+          estilo: 'Delicada y sofisticada',
+          ejemplo: 'Virtuosa Ind'
+        },
+        {
+          nombre: 'Montserrat',
+          clase: 'muestra-montserrat',
+          estilo: 'Moderna y definida',
+          ejemplo: 'VIRTUOSA IND'
+        },
+        {
+          nombre: 'DM Sans',
+          clase: 'muestra-dm',
+          estilo: 'Simple y actual',
+          ejemplo: 'Virtuosa Ind'
+        }
+      ]
+
+      let paletaElegida = 0
+      let fuenteElegida = 0
+
+      const $ = id => document.getElementById(id)
+
+      function cargarPaletas() {
+        $('paletas').innerHTML = paletas
+          .map(
+            (p, i) => `
+        <button type="button"
+          class="opcion ${i === paletaElegida ? 'seleccionada' : ''}"
+          data-paleta="${i}">
+          <strong>${p.nombre}</strong>
+          <small>${p.descripcion}</small>
+          <div class="muestras">
+            ${p.colores
+              .map(
+                c => `
+              <span class="muestra" role="button" tabindex="0"
+                data-color="${c}" aria-label="Copiar color ${c}">
+                <span class="cuadro-color" style="background:${c}"></span>
+                <span class="hex">${c}</span>
+              </span>
+            `
+              )
+              .join('')}
+          </div>
+          <small>${
+            i === paletaElegida ? '✓ Seleccionada' : 'Tocar para elegir'
+          }</small>
+        </button>
+      `
+          )
+          .join('')
+
+        $('paletas')
+          .querySelectorAll('[data-paleta]')
+          .forEach(btn => {
+            btn.addEventListener('click', e => {
+              if (e.target.closest('[data-color]')) return
+              paletaElegida = Number(btn.dataset.paleta)
+              cargarPaletas()
+              actualizarPreview()
+            })
+          })
+
+        $('paletas')
+          .querySelectorAll('[data-color]')
+          .forEach(color => {
+            color.addEventListener('click', e => {
+              e.stopPropagation()
+              copiarTexto(
+                color.dataset.color,
+                'Código copiado: ' + color.dataset.color
+              )
+            })
+            color.addEventListener('keydown', e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                copiarTexto(
+                  color.dataset.color,
+                  'Código copiado: ' + color.dataset.color
+                )
+              }
+            })
+          })
+      }
+
+      function cargarFuentes() {
+        $('fuentes').innerHTML = fuentes
+          .map(
+            (f, i) => `
+        <button type="button"
+          class="opcion ${i === fuenteElegida ? 'seleccionada' : ''}"
+          data-fuente="${i}">
+          <strong>${f.nombre}</strong>
+          <small>${f.estilo}</small>
+          <div class="vista-tipografia ${f.clase}">${f.ejemplo}</div>
+          <small>${
+            i === fuenteElegida ? '✓ Seleccionada' : 'Tocar para elegir'
+          }</small>
+        </button>
+      `
+          )
+          .join('')
+
+        $('fuentes')
+          .querySelectorAll('[data-fuente]')
+          .forEach(btn => {
+            btn.addEventListener('click', () => {
+              fuenteElegida = Number(btn.dataset.fuente)
+              cargarFuentes()
+              actualizarPreview()
+            })
+          })
+      }
+
+      function actualizarPreview() {
+        const colores = paletas[paletaElegida].colores
+        $('preview-marca').style.color = colores[3]
+        $('preview-fondo').style.background = colores[0]
+        $('preview-fondo').style.color = colores[4]
+        $('preview-boton').style.background = colores[2]
+        $(
+          'preview-marca'
+        ).style.fontFamily = `"${fuentes[fuenteElegida].nombre}", serif`
+        $('preview-marca').style.letterSpacing = '2px'
+        $('preview-marca').style.background = colores[4]
+      }
+
+      function resumen() {
+        const p = paletas[paletaElegida]
+        const f = fuentes[fuenteElegida]
+
+        return `VIRTUOSA IND — MIS ELECCIONES
+
+PALETA: ${p.nombre}
+${p.colores.map((c, i) => `Color ${i + 1}: ${c}`).join('\n')}
+
+TIPOGRAFÍA: ${f.nombre}
+Estilo: ${f.estilo}
+
+ESTILO DE MARCA: ${$('estilo').value || 'Pendiente'}
+FOTOGRAFÍAS: ${$('fotos').value || 'Pendiente'}
+PEDIDOS: ${$('carrito').value || 'Pendiente'}
+
+OTRAS IDEAS:
+${$('referencias').value || 'Sin comentarios por ahora'}
+
+Estas son mis preferencias para planificar la tienda online.`
+      }
+
+      function mostrar(mensaje) {
+        $('resultado').style.display = 'block'
+        $('resultado').textContent = mensaje
+      }
+
+      function copiarTexto(texto, mensaje) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(texto)
+            .then(() => ($('mensaje-color').textContent = mensaje))
+            .catch(() => mostrar(texto))
+        } else {
+          mostrar(texto)
+          $('mensaje-color').textContent =
+            'Seleccioná y copiá el texto que aparece en pantalla.'
+        }
+      }
+
+      function guardar() {
+        const datos = {
+          paletaElegida,
+          fuenteElegida,
+          estilo: $('estilo').value,
+          fotos: $('fotos').value,
+          carrito: $('carrito').value,
+          referencias: $('referencias').value
+        }
+
+        try {
+          localStorage.setItem('virtuosaIdentidadVisual', JSON.stringify(datos))
+          mostrar('¡Elecciones guardadas en este navegador!\n\n' + resumen())
+        } catch {
+          mostrar(
+            'Copiá este resumen para no perder tus elecciones:\n\n' + resumen()
+          )
+        }
+      }
+
+      function cargarGuardado() {
+        try {
+          const guardado = JSON.parse(
+            localStorage.getItem('virtuosaIdentidadVisual')
+          )
+          if (!guardado) return
+
+          paletaElegida = guardado.paletaElegida ?? 0
+          fuenteElegida = guardado.fuenteElegida ?? 0
+          $('estilo').value = guardado.estilo || ''
+          $('fotos').value = guardado.fotos || ''
+          $('carrito').value = guardado.carrito || ''
+          $('referencias').value = guardado.referencias || ''
+        } catch {
+          // Si no hay datos guardados, se muestran las opciones iniciales.
+        }
+      }
+
+      $('guardar').addEventListener('click', guardar)
+      $('copiar').addEventListener('click', () => {
+        copiarTexto(resumen(), 'Resumen copiado.')
+        mostrar(resumen())
+      })
+
+      cargarGuardado()
+      cargarPaletas()
+      cargarFuentes()
+      actualizarPreview()
+    </script>
+  </body>
+</html>
